@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Industry and Use Case Selector</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    .container { max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+    .form-group { margin-bottom: 15px; }
+    label { display: block; font-weight: bold; margin-bottom: 5px; }
+    select, button { width: 100%; padding: 10px; font-size: 16px; }
+    .result { margin-top: 20px; padding: 10px; border-top: 1px solid #ddd; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Select Industries and Use Cases</h1>
+
+  <!-- Industry Selection -->
+  <div class="form-group">
+    <label for="industry">Primary Industry</label>
+    <select id="industry">
+      <option value="">Select an Industry</option>
+      <option value="Healthcare">Healthcare</option>
+      <option value="Finance">Finance</option>
+      <option value="Retail">Retail</option>
+      <option value="Education">Education</option>
+    </select>
+  </div>
+
+  <!-- Alternate Industry Selection -->
+  <div class="form-group">
+    <label for="altIndustry">Alternate Industry</label>
+    <select id="altIndustry" multiple>
+      <option value="Healthcare">Healthcare</option>
+      <option value="Finance">Finance</option>
+      <option value="Retail">Retail</option>
+      <option value="Education">Education</option>
+    </select>
+  </div>
+
+  <!-- Use Case Selection -->
+  <div class="form-group">
+    <label for="useCases">Use Cases</label>
+    <select id="useCases" multiple>
+      <option value="Customer Engagement">Customer Engagement</option>
+      <option value="Sales Optimization">Sales Optimization</option>
+      <option value="Inventory Management">Inventory Management</option>
+      <option value="Data Analytics">Data Analytics</option>
+    </select>
+  </div>
+
+  <!-- Submit Button -->
+  <button onclick="showSelections()">Submit</button>
+
+  <!-- Results Display -->
+  <div class="result" id="resultDisplay">
+    <h3>Selected Options:</h3>
+    <p id="industryDisplay">Primary Industry: <span></span></p>
+    <p id="altIndustryDisplay">Alternate Industry: <span></span></p>
+    <p id="useCasesDisplay">Use Cases: <span></span></p>
+  </div>
+</div>
+
+<script>
+  function showSelections() {
+    // Get selected industry
+    const industry = document.getElementById('industry').value;
+    document.getElementById('industryDisplay').querySelector('span').innerText = industry || "None selected";
+
+    // Get selected alternate industries
+    const altIndustryOptions = document.getElementById('altIndustry').selectedOptions;
+    const altIndustries = Array.from(altIndustryOptions).map(option => option.value).join(', ');
+    document.getElementById('altIndustryDisplay').querySelector('span').innerText = altIndustries || "None selected";
+
+    // Get selected use cases
+    const useCaseOptions = document.getElementById('useCases').selectedOptions;
+    const useCases = Array.from(useCaseOptions).map(option => option.value).join(', ');
+    document.getElementById('useCasesDisplay').querySelector('span').innerText = useCases || "None selected";
+  }
+</script>
+
+</body>
+</html>
