@@ -5,55 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Industry and Use Case Selector</title>
   
-  <!-- Spectrum CSS for Button styling -->
-  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/button/dist/index-vars.css">
+  <!-- Spectrum Global CSS for base styles -->
+  <link rel="stylesheet" href="css/spectrum-global.css">
 
   <style>
-    body { font-family: Arial, sans-serif; }
-    .container { max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
-    .form-group { margin-bottom: 15px; }
-    label { display: block; font-weight: bold; margin-bottom: 5px; }
-    select { width: 100%; padding: 10px; font-size: 16px; }
-    .result { margin-top: 20px; padding: 10px; border-top: 1px solid #ddd; }
+    /* Additional styling for layout, if needed */
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
   </style>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 </head>
-<body>
+<body class="spectrum">
 
-<div class="container">
-  <h1>Select Industries and Use Cases</h1>
+<div class="container spectrum-Body--sizeL">
+  <h1 class="spectrum-Heading spectrum-Heading--sizeL">Select Industries and Use Cases</h1>
 
   <!-- Industry Selection -->
   <div class="form-group">
-    <label for="industry">Primary Industry</label>
-    <select id="industry">
+    <label for="industry" class="spectrum-FieldLabel">Primary Industry</label>
+    <select id="industry" class="spectrum-Dropdown">
       <option value="">Select an Industry</option>
     </select>
   </div>
 
   <!-- Alternate Industry Selection -->
   <div class="form-group">
-    <label for="altIndustry">Alternate Industry</label>
-    <select id="altIndustry" multiple>
+    <label for="altIndustry" class="spectrum-FieldLabel">Alternate Industry</label>
+    <select id="altIndustry" class="spectrum-Dropdown" multiple>
     </select>
   </div>
 
   <!-- Use Case Selection -->
   <div class="form-group">
-    <label for="useCases">Use Cases</label>
-    <select id="useCases" multiple>
+    <label for="useCases" class="spectrum-FieldLabel">Use Cases</label>
+    <select id="useCases" class="spectrum-Dropdown" multiple>
     </select>
   </div>
 
-  <!-- Submit Button with Spectrum styling -->
+  <!-- Submit Button -->
   <button onclick="showSelections()" class="spectrum-Button spectrum-Button--primary">
     <span class="spectrum-Button-label">Submit</span>
   </button>
 
   <!-- Results Display -->
-  <div class="result" id="resultDisplay">
-    <h3>Selected Options:</h3>
+  <div class="result spectrum-Body--sizeM" id="resultDisplay">
+    <h3 class="spectrum-Heading spectrum-Heading--sizeS">Selected Options:</h3>
     <p id="industryDisplay">Primary Industry: <span></span></p>
     <p id="altIndustryDisplay">Alternate Industry: <span></span></p>
     <p id="useCasesDisplay">Use Cases: <span></span></p>
@@ -73,7 +75,6 @@
     });
   }
 
-  // Function to populate dropdowns based on the CSV data
   function populateDropdowns(data) {
     const industryDropdown = document.getElementById('industry');
     const altIndustryDropdown = document.getElementById('altIndustry');
@@ -107,7 +108,6 @@
     });
   }
 
-  // Function to display selected options
   function showSelections() {
     const industry = document.getElementById('industry').value;
     const altIndustryOptions = document.getElementById('altIndustry').selectedOptions;
@@ -122,5 +122,4 @@
 </script>
 
 </body>
-</html>
 </html>
