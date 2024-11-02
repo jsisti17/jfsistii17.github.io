@@ -4,14 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Industry and Use Case Selector</title>
+  
+  <!-- Spectrum CSS for Button styling -->
+  <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/button/dist/index-vars.css">
+
   <style>
     body { font-family: Arial, sans-serif; }
     .container { max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
     .form-group { margin-bottom: 15px; }
     label { display: block; font-weight: bold; margin-bottom: 5px; }
-    select, button { width: 100%; padding: 10px; font-size: 16px; }
+    select { width: 100%; padding: 10px; font-size: 16px; }
     .result { margin-top: 20px; padding: 10px; border-top: 1px solid #ddd; }
   </style>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 </head>
 <body>
@@ -41,8 +46,10 @@
     </select>
   </div>
 
-  <!-- Submit Button -->
-  <button onclick="showSelections()">Submit</button>
+  <!-- Submit Button with Spectrum styling -->
+  <button onclick="showSelections()" class="spectrum-Button spectrum-Button--primary">
+    <span class="spectrum-Button-label">Submit</span>
+  </button>
 
   <!-- Results Display -->
   <div class="result" id="resultDisplay">
@@ -58,7 +65,7 @@
   function loadCSV() {
     Papa.parse("data.csv", {
       download: true,
-      header: true, // This makes sure the first row is treated as headers
+      header: true,
       complete: function(results) {
         const data = results.data;
         populateDropdowns(data);
@@ -72,35 +79,30 @@
     const altIndustryDropdown = document.getElementById('altIndustry');
     const useCasesDropdown = document.getElementById('useCases');
 
-    // Clear any existing options
     industryDropdown.innerHTML = "<option value=''>Select an Industry</option>";
     altIndustryDropdown.innerHTML = "";
     useCasesDropdown.innerHTML = "";
 
-    // Populate dropdowns with data
     data.forEach(row => {
-      // Primary Industry (single select)
       if (row.industry) {
-          let industryOption = document.createElement("option");
-          industryOption.value = row.industry;
-          industryOption.textContent = row.industry;
-          industryDropdown.appendChild(industryOption);
+        let industryOption = document.createElement("option");
+        industryOption.value = row.industry;
+        industryOption.textContent = row.industry;
+        industryDropdown.appendChild(industryOption);
       }
 
-      // Alternate Industry (multi-select)
       if (row.altIndustry) {
-          let altOption = document.createElement("option");
-          altOption.value = row.altIndustry;
-          altOption.textContent = row.altIndustry;
-          altIndustryDropdown.appendChild(altOption);
+        let altOption = document.createElement("option");
+        altOption.value = row.altIndustry;
+        altOption.textContent = row.altIndustry;
+        altIndustryDropdown.appendChild(altOption);
       }
 
-      // Use Cases (multi-select)
       if (row.useCases) {
-          let useCaseOption = document.createElement("option");
-          useCaseOption.value = row.useCases;
-          useCaseOption.textContent = row.useCases;
-          useCasesDropdown.appendChild(useCaseOption);
+        let useCaseOption = document.createElement("option");
+        useCaseOption.value = row.useCases;
+        useCaseOption.textContent = row.useCases;
+        useCasesDropdown.appendChild(useCaseOption);
       }
     });
   }
@@ -116,9 +118,9 @@
     document.getElementById('useCasesDisplay').querySelector('span').innerText = Array.from(useCaseOptions).map(option => option.value).join(', ') || "None selected";
   }
 
-  // Run loadCSV function when the page loads
   window.onload = loadCSV;
 </script>
 
 </body>
+</html>
 </html>
